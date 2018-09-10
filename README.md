@@ -14,10 +14,5 @@ Changelog :
 v1.0
 	- Initial Release.
 
-Thanks :
-	- switchbrew for libnx and The Homebrew Launcher.
-	- devkitPro.
-	- http://gbatemp.net/ for Forum Homebrew community.
-
 Original game :
 	- http://helmet.kafuka.org/

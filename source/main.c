@@ -116,7 +116,7 @@ void printGame()
 	{
 		for(colonnes = 0; colonnes < MAX_TILEY; colonnes++)
 		{
-			//Les tiles à afficher			
+			//Les tiles Ã  afficher			
 			renderTexture(sprite[1].texture, renderer, level_courant[lignes*MAX_TILEY + colonnes] * TILE_SIZEX, 0, 595+lignes*TILE_SIZEX, 98+colonnes*TILE_SIZEY, TILE_SIZEX, TILE_SIZEY);
 		}
 	}
@@ -128,7 +128,7 @@ void printGame()
 	Affiche_trois_chiffres(compteur, 836, 13);
 
 	//REFRESH
-    SDL_RenderPresent(renderer);
+    	SDL_RenderPresent(renderer);
 }
 
 void debloqueChoix()
@@ -161,11 +161,11 @@ void manageInput()
 
 		if ((compteur == 0) || (level_courant[TILE_X*MAX_TILEY + TILE_Y] == 2))
 		{
-			//1er Touché
+			//1er TouchÃ©
 			level_courant[TILE_X*MAX_TILEY + TILE_Y] = 1;
 			compteur++;
 			
-			//On affiche les 8 possibilités si existante.
+			//On affiche les 8 possibilitÃ©s si existante.
 			debloqueChoix();
 		}
 	}
@@ -175,7 +175,7 @@ void manageInput()
 		level_courant[TILE_X*MAX_TILEY + TILE_Y] = 1;
 		compteur++;
 
-		//On affiche les 8 possibilités si existante.
+		//On affiche les 8 possibilitÃ©s si existante.
 		debloqueChoix();
 	}
 	else if (kDown & KEY_B)
@@ -213,9 +213,9 @@ int main(int argc, char **argv)
 	IMG_Init(IMG_INIT_PNG);
 	romfsInit();
 
-    // Create an SDL window & renderer
+    	// Create an SDL window & renderer
 	window = SDL_CreateWindow("Main-Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 0, 0, SDL_WINDOW_FULLSCREEN_DESKTOP);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+    	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
  
 	// Create bg texture:
 	surface = IMG_Load("romfs:/resources/main.png");

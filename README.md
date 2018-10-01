@@ -1,4 +1,4 @@
-# 100 Boxes NX v1.0 By Cid2mizard
+# 100 Boxes NX v1.0 By Cid2mizard (2018)
 
 100 Boxes NX is a simple yet challenging puzzle game.
 

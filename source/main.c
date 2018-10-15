@@ -215,7 +215,7 @@ int main(int argc, char **argv)
 
     	// Create an SDL window & renderer
 	window = SDL_CreateWindow("Main-Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 0, 0, SDL_WINDOW_FULLSCREEN_DESKTOP);
-    	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+    	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
  
 	// Create bg texture:
 	surface = IMG_Load("romfs:/resources/main.png");

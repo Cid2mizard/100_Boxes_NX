@@ -1,4 +1,4 @@
-# 100 Boxes NX v1.0 By Cid2mizard (2018)
+# 100 Boxes NX v1.1 By Cid2mizard (2018)
 
 100 Boxes NX is a simple yet challenging puzzle game.
 
@@ -18,12 +18,15 @@ Changelog :
 v1.0
 
 	- Initial Release.
-  
+
+
 v1.1
 
-  - Add music.
-  - Update with last sdl2.
-  - Clean code.
+	- Add music by Eric Matyas (www.soundimage.org).
+  
+	- Update with last sdl2.
+  
+	- Clean code.
 
 Original game :
 

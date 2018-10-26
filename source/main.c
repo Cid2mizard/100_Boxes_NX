@@ -113,7 +113,7 @@ void printGame()
 	{
 		for(colonnes = 0; colonnes < MAX_TILEY; colonnes++)
 		{
-			//Les tiles à afficher			
+			//Les tiles Ã  afficher
 			renderTexture(sprite[1].texture, renderer, level_courant[lignes*MAX_TILEY + colonnes] * TILE_SIZEX, 0, 595+lignes*TILE_SIZEX, 98+colonnes*TILE_SIZEY, TILE_SIZEX, TILE_SIZEY);
 		}
 	}
@@ -125,7 +125,7 @@ void printGame()
 	Affiche_trois_chiffres(compteur, 836, 13);
 
 	//REFRESH
-    SDL_RenderPresent(renderer);
+    	SDL_RenderPresent(renderer);
 }
 
 void debloqueChoix()
@@ -216,9 +216,9 @@ int main(int argc, char **argv)
 
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024);
 
-    // Create an SDL window & renderer
+	// Create an SDL window & renderer
 	window = SDL_CreateWindow("Main-Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 0, 0, SDL_WINDOW_FULLSCREEN_DESKTOP);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
  
 	// Create bg texture:
 	surface = IMG_Load("romfs:/resources/images/main.png");
@@ -254,6 +254,7 @@ int main(int argc, char **argv)
 			break;
 	}
 
+
 	//On nettoi le son
 	Mix_FreeMusic(musique);
 	Mix_CloseAudio();
@@ -272,4 +273,9 @@ int main(int argc, char **argv)
 	SDL_Quit();
 
 	return EXIT_SUCCESS;
+}
+
+	
+	SDL_Quit();				// SDL cleanup
+	return EXIT_SUCCESS; 	// Clean exit to HBMenu
 }

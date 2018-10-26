@@ -5,9 +5,6 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
-
 #define TILE_SIZEX 60
 #define TILE_SIZEY 60
 #define MAX_TILEX 10
@@ -24,8 +21,6 @@ u32 kDown;
 typedef struct 
 {
 	SDL_Texture * texture;
-	SDL_Rect SrcR;
-	SDL_Rect DestR;
 } 
 images;
 images background, sprite[3];
@@ -37,7 +32,9 @@ u8 compteur;
 u8 CASE_X, CASE_Y;
 u8 TILE_X, TILE_Y;
 
-//STYLUS
+u8 i;
+
+//Touch
 bool DowntouchInBox(touchPosition touch, int x1, int y1, int x2, int y2)
 {
 	int tx=touch.px;
@@ -154,6 +151,10 @@ void debloqueChoix()
 
 void manageInput()
 {
+	hidScanInput();
+	kDown = hidKeysDown(CONTROLLER_P1_AUTO);
+	hidTouchRead(&Stylus, 0);
+
 	if (DowntouchInBox(Stylus, 595, 98, 595 + 600, 98 + 600))
 	{
 		TILE_X = (Stylus.px-595)/TILE_SIZEX;
@@ -213,47 +214,62 @@ int main(int argc, char **argv)
 	IMG_Init(IMG_INIT_PNG);
 	romfsInit();
 
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024);
+
     // Create an SDL window & renderer
 	window = SDL_CreateWindow("Main-Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 0, 0, SDL_WINDOW_FULLSCREEN_DESKTOP);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
  
 	// Create bg texture:
-	surface = IMG_Load("romfs:/resources/main.png");
+	surface = IMG_Load("romfs:/resources/images/main.png");
 	background.texture = SDL_CreateTextureFromSurface(renderer, surface);
 	SDL_FreeSurface(surface);
 
 	//Le curseur
-	surface = IMG_Load("romfs:/resources/CURSOR.png");
+	surface = IMG_Load("romfs:/resources/images/CURSOR.png");
 	sprite[0].texture = SDL_CreateTextureFromSurface(renderer, surface);
 	SDL_FreeSurface(surface);
 
 	//Les tiles
-	surface = IMG_Load("romfs:/resources/TILES.png");
+	surface = IMG_Load("romfs:/resources/images/TILES.png");
 	sprite[1].texture = SDL_CreateTextureFromSurface(renderer, surface);
 	SDL_FreeSurface(surface);
 
 	//Les nombres
-	surface = IMG_Load("romfs:/resources/NUMBERS.png");
+	surface = IMG_Load("romfs:/resources/images/NUMBERS.png");
 	sprite[2].texture = SDL_CreateTextureFromSurface(renderer, surface);
 	SDL_FreeSurface(surface);
+
+	Mix_Music *musique;
+	musique = Mix_LoadMUS("romfs:/resources/sounds/Analog-Nostalgia.mp3");
+	Mix_PlayMusic(musique, -1);
 
 	// Game loop:
 	while (appletMainLoop())
 	{
-		// Get inputs
-		hidScanInput();
-		kDown = hidKeysDown(CONTROLLER_P1_AUTO);
-		hidTouchRead(&Stylus, 0);
-
 		manageInput();
-
 		printGame();
 
-		// On controller 1 input...PLUS
 		if (kDown & KEY_PLUS)
-			break; 	// Break out of main applet loop to exit
+			break;
 	}
-	
-	SDL_Quit();				// SDL cleanup
-	return EXIT_SUCCESS; 	// Clean exit to HBMenu
+
+	//On nettoi le son
+	Mix_FreeMusic(musique);
+	Mix_CloseAudio();
+
+	//On détruit les textures
+	SDL_DestroyTexture(background.texture);
+
+	for (i=0; i < 3; i++)
+		SDL_DestroyTexture(sprite[i].texture);
+
+	//On detruit la fenètre
+	SDL_DestroyWindow(window);
+
+	romfsExit();
+	IMG_Quit();	
+	SDL_Quit();
+
+	return EXIT_SUCCESS;
 }

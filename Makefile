@@ -38,7 +38,7 @@ EXEFS_SRC	  := exefs_src
 ROMFS         := romfs
 APP_TITLE     := 100 Boxes NX
 APP_AUTHOR    := cid2mizard
-APP_VERSION   := 1.0
+APP_VERSION   := 1.1
 ICON 		:= romfs/resources/icon.jpg
 
 #---------------------------------------------------------------------------------
@@ -56,9 +56,10 @@ CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= -lSDL2_ttf -lSDL2_image -lSDL2_mixer -lSDL2 \
+LIBS	:=  -lSDL2_image -lSDL2_mixer -lSDL2 \
 			-lpng -lz -ljpeg \
-			-lvorbisidec -logg -lmpg123 -lmodplug -lstdc++ \
+			-lglad -lEGL -lglapi -ldrm_nouveau -lstdc++ \
+			-lvorbisidec -logg -lmpg123 -lmodplug \
 			-lnx -lm -lfreetype -lbz2
 
 #---------------------------------------------------------------------------------

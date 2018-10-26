@@ -113,7 +113,7 @@ void printGame()
 	{
 		for(colonnes = 0; colonnes < MAX_TILEY; colonnes++)
 		{
-			//Les tiles Ã  afficher
+			//Les tiles ÃƒÂ  afficher
 			renderTexture(sprite[1].texture, renderer, level_courant[lignes*MAX_TILEY + colonnes] * TILE_SIZEX, 0, 595+lignes*TILE_SIZEX, 98+colonnes*TILE_SIZEY, TILE_SIZEX, TILE_SIZEY);
 		}
 	}
@@ -162,11 +162,11 @@ void manageInput()
 
 		if ((compteur == 0) || (level_courant[TILE_X*MAX_TILEY + TILE_Y] == 2))
 		{
-			//1er Touché
+			//1er TouchÃ©
 			level_courant[TILE_X*MAX_TILEY + TILE_Y] = 1;
 			compteur++;
 			
-			//On affiche les 8 possibilités si existante.
+			//On affiche les 8 possibilitÃ©s si existante.
 			debloqueChoix();
 		}
 	}
@@ -176,7 +176,7 @@ void manageInput()
 		level_courant[TILE_X*MAX_TILEY + TILE_Y] = 1;
 		compteur++;
 
-		//On affiche les 8 possibilités si existante.
+		//On affiche les 8 possibilitÃ©s si existante.
 		debloqueChoix();
 	}
 	else if (kDown & KEY_B)
@@ -254,18 +254,17 @@ int main(int argc, char **argv)
 			break;
 	}
 
-
 	//On nettoi le son
 	Mix_FreeMusic(musique);
 	Mix_CloseAudio();
 
-	//On détruit les textures
+	//On dÃ©truit les textures
 	SDL_DestroyTexture(background.texture);
 
 	for (i=0; i < 3; i++)
 		SDL_DestroyTexture(sprite[i].texture);
 
-	//On detruit la fenètre
+	//On detruit la fenÃ¨tre
 	SDL_DestroyWindow(window);
 
 	romfsExit();
@@ -273,9 +272,4 @@ int main(int argc, char **argv)
 	SDL_Quit();
 
 	return EXIT_SUCCESS;
-}
-
-	
-	SDL_Quit();				// SDL cleanup
-	return EXIT_SUCCESS; 	// Clean exit to HBMenu
 }
